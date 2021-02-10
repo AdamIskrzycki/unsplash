@@ -1,0 +1,21 @@
+body {
+    background-color: #000;
+    color: white;
+}
+
+.BrowserContainer {
+    width: 80%;
+    margin: 10% auto;
+}
+
+.UnsplashContainer {
+    margin-left: 15%;
+}
+
+.UnsplashHeader {
+    font-size: 3em;
+}
+
+p {
+    font-size: 1.25em;
+}
