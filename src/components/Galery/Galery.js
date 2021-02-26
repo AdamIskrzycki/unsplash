@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BrowserInput from '../BrowserInput/BrowserInput';
 import './Galery.css';
 import { useParams } from 'react-router-dom'
-import { Dialog, DialogTitle, DialogContent } from "@material-ui/core";
+import { Dialog, DialogTitle, DialogContent, DialogContentText } from "@material-ui/core";
 
 
 const Galery = () => {
@@ -11,6 +11,10 @@ const Galery = () => {
     const [photos, setPhotos] = useState([]);
     const [relatedSearches, setRelatedSearches] = useState();
     const [openModal, setOpenModal] = useState(false);
+    const [currentImageUrl, setCurrentImageUrl] = useState(null);
+    const [currentImagePersonName, setCurrentImagePersonName] = useState(null);
+    const [currentImagePlace, setCurrentImagePlace] = useState(null);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,8 +34,11 @@ const Galery = () => {
         fetchData();
     }, [searchTag])
 
-    const handleModalOpen = () => {
+    const getImageInformation = (imageUrl, imagePersonName, imagePlace) => {
         setOpenModal(true);
+        setCurrentImageUrl(imageUrl);
+        setCurrentImagePersonName(imagePersonName);
+        setCurrentImagePlace(imagePlace);
     }
 
     const handleModalClose = () => {
@@ -40,10 +47,6 @@ const Galery = () => {
 
     return (
         <nav className="NavBar">
-            <Dialog open={openModal} onClose={handleModalClose}>
-                <DialogTitle>TEST TITLE</DialogTitle>
-                <DialogContent>TEST CONTENT</DialogContent>
-            </Dialog>
             <BrowserInput value={searchTag} />
             {searchTag ? <p className="SearchTag">{searchTag}</p> : <p>no searchtag provided</p>}
             <div>
@@ -53,16 +56,29 @@ const Galery = () => {
                     }) : null}
                 </div>
                 <div className="GaleryGrid">
+                    <Dialog open={openModal} onClose={handleModalClose}>
+                        <DialogTitle>Taken by: {currentImagePersonName}</DialogTitle>
+                        <DialogContent>
+                            <img className="ModalImagePreview" src={currentImageUrl}></img>
+                        </DialogContent>
+                        <DialogTitle>{currentImagePlace}</DialogTitle>
+                    </Dialog>
                     {photos.map(photo => {
                         return (
-                            <div key={photo.id}>
-                                <img className="Image" src={photo.urls.small} onClick={handleModalOpen}></img>
-                                <div className="IndividualTagsContainer">
-                                    {photo.tags.map(tag => {
-                                        return <p className="IndividualTag">{tag.title}</p>
-                                    })}
+                            <>
+                                <div key={photo.id}>
+                                    <img className="Image"
+                                        src={photo.urls.small}
+                                        onClick={() => { getImageInformation(photo.urls.regular, photo.user.name, photo.user.location) }}
+                                    />
+                                    <div className="IndividualTagsContainer">
+                                        {photo.tags.map(tag => {
+                                            return <p className="IndividualTag">{tag.title}</p>
+                                        })}
+                                    </div>
                                 </div>
-                            </div>
+
+                            </>
                         )
                     })}
                 </div>

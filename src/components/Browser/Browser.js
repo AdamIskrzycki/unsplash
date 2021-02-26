@@ -48,9 +48,8 @@ const Browser = () => {
     }, [inputValue])
 
     //TODO
-    //Galery component - photo preview (modal)
     //Galery component - fix searchbar
-    //Browser component - fix scrollbar when there is a lot of hints rendered
+    //Browser component - fix scrollbar when a lot of hints are displayed
     //General styling
 
 
@@ -62,7 +61,7 @@ const Browser = () => {
                     <p>The internet source of freely-usable images</p>
                     <p>Powered by creators everywhere</p>
                     <BrowserInput value={inputValue} changed={onInputChange} onPress={handleKeyPress} />
-                    {inputValue ? <div className="HintsContainer">
+                    {inputValue.length > 2 ? <div className="HintsContainer">
                         {hints.map(hint => {
                             return <p id="Hint" onClick={goToGalery}>{hint.alt_description}</p>
                     })}
