@@ -1,4 +1,4 @@
-.NavBar {
+.GaleryContainer {
     width: 80%;
     margin: 30px auto;
 }
@@ -19,7 +19,7 @@
 .RelatedSearch {
     font-weight: 600;
     text-transform: uppercase;
-    border: 1px solid white;
+    border: 1px solid grey;
     align-self: flex-start;
     font-size: 20px;
     margin: 10px;
@@ -41,7 +41,7 @@
 .IndividualTag {
     font-weight: 500;
     text-transform: uppercase;
-    border: 1px solid white;
+    border: 1px solid grey;
     align-self: flex-start;
     font-size: 12px;
     margin: 10px;
