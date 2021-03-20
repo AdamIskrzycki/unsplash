@@ -1,64 +1,64 @@
 .GaleryContainer {
-    width: 80%;
-    margin: 30px auto;
+  width: 80%;
+  margin: 30px auto;
 }
 
 .SearchTag {
-    font-size: 30px;
-    margin: 20px 0;
-    text-transform: uppercase;
+  font-size: 30px;
+  margin: 20px 0;
+  text-transform: uppercase;
 }
 
 .RelatedSearchesContainer {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    margin-bottom: 50px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
 }
 
 .RelatedSearch {
-    font-weight: 600;
-    text-transform: uppercase;
-    border: 1px solid grey;
-    align-self: flex-start;
-    font-size: 20px;
-    margin: 10px;
-    padding: 8px 50px;
-    border-radius: 5px;
-    max-height: 26px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 1px solid grey;
+  align-self: flex-start;
+  font-size: 20px;
+  margin: 10px;
+  padding: 8px 50px;
+  border-radius: 5px;
+  max-height: 26px;
 }
 
 .Image {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .GaleryGrid {
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    grid-gap: 15px;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-gap: 15px;
 }
 
 .IndividualTag {
-    font-weight: 500;
-    text-transform: uppercase;
-    border: 1px solid grey;
-    align-self: flex-start;
-    font-size: 12px;
-    margin: 10px;
-    padding: 8px;
-    border-radius: 5px;
-    max-height: 26px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 1px solid grey;
+  align-self: flex-start;
+  font-size: 12px;
+  margin: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  max-height: 26px;
 }
 
 .IndividualTagsContainer {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .ModalImagePreview {
-    width: 90%;
-    height: 90%;
-    margin: auto;
-    border-radius: 10px;
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  border-radius: 10px;
 }

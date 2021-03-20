@@ -69,8 +69,8 @@ const Galery = () => {
           </Dialog>
           {photos.map((photo) => {
             return (
-              <>   
-                <div key={photo.id}>    
+              <>
+                <div key={photo.id}>
                   <img
                     className="Image"
                     src={photo.urls.small}
