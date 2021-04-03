@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
+import BrowserInput from '../BrowserInput/BrowserInput';
 import "./Browser.css";
 
 const Browser = () => {
   //TODO
-  //Galery component - fix searchbar
   //General styling
 
   return (
@@ -12,6 +12,7 @@ const Browser = () => {
         <header className="UnsplashHeader">UNSPLASH</header>
         <p>The Internet's source of freely-usable images</p>
         <p>Powered by creators everywhere</p>
+        <BrowserInput />
       </section>
     </div>
   );

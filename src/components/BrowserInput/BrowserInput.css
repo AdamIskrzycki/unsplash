@@ -1,5 +1,5 @@
 .BrowserInput {
-  width: 80%;
+  width: 65vw;
   height: 40px;
   font-size: 20px;
   border: 1px solid black;
@@ -7,12 +7,20 @@
 }
 
 .HintsContainer {
-  opacity: 0.9;
   position: absolute;
-  width: 100%;
+  width: 65vw;  
+  opacity: 0.9;
   background-color: white;
   color: black;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
   margin-top: 10px;
+  max-height: 50%;
+}
+
+.Hint {
+  cursor: pointer;
+  padding-top: 5px;
+  border-top: .5px dotted black;
+  max-height: 20px;  
 }

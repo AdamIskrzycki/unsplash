@@ -45,55 +45,60 @@ const Galery = () => {
   };
 
   return (
-    <section className="GaleryContainer">
-      {searchTag ? (
-        <p className="SearchTag">{searchTag}</p>
-      ) : (
-        <p>no searchtag provided</p>
-      )}
-      <div>
-        <div className="RelatedSearchesContainer">
-          {relatedSearches
-            ? relatedSearches.map((search) => {
-                return <div className="RelatedSearch">{search.title}</div>;
-              })
-            : null}
-        </div>
-        <div className="GaleryGrid">
-          <Dialog open={openModal} onClose={handleModalClose}>
-            <DialogTitle>Taken by: {currentImagePersonName}</DialogTitle>
-            <DialogContent>
-              <img className="ModalImagePreview" src={currentImageUrl}></img>
-            </DialogContent>
-            <DialogTitle>{currentImagePlace}</DialogTitle>
-          </Dialog>
-          {photos.map((photo) => {
-            return (
-              <>
-                <div key={photo.id}>
-                  <img
-                    className="Image"
-                    src={photo.urls.small}
-                    onClick={() => {
-                      getImageInformation(
-                        photo.urls.regular,
-                        photo.user.name,
-                        photo.user.location
-                      );
-                    }}
-                  />
-                  <div className="IndividualTagsContainer">
-                    {photo.tags.map((tag) => {
-                      return <p className="IndividualTag">{tag.title}</p>;
-                    })}
+    <>
+      <nav className="NavBar">
+        <BrowserInput />
+      </nav>
+      <section className="GaleryContainer">
+        {searchTag ? (
+          <p className="SearchTag">{searchTag}</p>
+        ) : (
+          <p>no searchtag provided</p>
+        )}
+        <div>
+          <div className="RelatedSearchesContainer">
+            {relatedSearches
+              ? relatedSearches.map((search) => {
+                  return <div className="RelatedSearch">{search.title}</div>;
+                })
+              : null}
+          </div>
+          <div className="GaleryGrid">
+            <Dialog open={openModal} onClose={handleModalClose}>
+              <DialogTitle>Taken by: {currentImagePersonName}</DialogTitle>
+              <DialogContent>
+                <img className="ModalImagePreview" src={currentImageUrl}></img>
+              </DialogContent>
+              <DialogTitle>{currentImagePlace}</DialogTitle>
+            </Dialog>
+            {photos.map((photo) => {
+              return (
+                <>
+                  <div key={photo.id}>
+                    <img
+                      className="Image"
+                      src={photo.urls.small}
+                      onClick={() => {
+                        getImageInformation(
+                          photo.urls.regular,
+                          photo.user.name,
+                          photo.user.location
+                        );
+                      }}
+                    />
+                    <div className="IndividualTagsContainer">
+                      {photo.tags.map((tag) => {
+                        return <p className="IndividualTag">{tag.title}</p>;
+                      })}
+                    </div>
                   </div>
-                </div>
-              </>
-            );
-          })}
+                </>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

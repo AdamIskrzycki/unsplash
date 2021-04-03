@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 const BrowserInput = (props) => {
   const [inputValue, setInputValue] = useState("");
   const [hints, setHints] = useState([]);
+  
 
   const history = useHistory();
 
@@ -48,7 +49,7 @@ const BrowserInput = (props) => {
       <input
         type="text"
         className="BrowserInput"
-        placeholder="Search free high-resolution photos "
+        placeholder="Search free high-resolution photos"
         value={inputValue}
         onChange={onInputChange}
         onKeyPress={handleKeyPress}
@@ -57,7 +58,7 @@ const BrowserInput = (props) => {
         <div className="HintsContainer">
           {hints.map((hint) => {
             return (
-              <p onClick={(e) => goToGalery(e, hint.alt_description)}>
+              <p className="Hint" onClick={(e) => goToGalery(e, hint.alt_description)}>
                 {hint.alt_description}
               </p>
             );

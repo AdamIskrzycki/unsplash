@@ -1,3 +1,8 @@
+.NavBar {
+  width: 65%;
+  margin: 30px auto;
+}
+
 .GaleryContainer {
   width: 80%;
   margin: 30px auto;
@@ -19,7 +24,7 @@
 .RelatedSearch {
   font-weight: 600;
   text-transform: uppercase;
-  border: 1px solid grey;
+  border: 0.5px solid grey;
   align-self: flex-start;
   font-size: 20px;
   margin: 10px;
@@ -34,8 +39,7 @@
 
 .GaleryGrid {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .IndividualTag {
