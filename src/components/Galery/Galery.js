@@ -46,6 +46,7 @@ const Galery = () => {
 
   return (
     <>
+    <div>
       <nav className="NavBar">
         <BrowserInput />
       </nav>
@@ -98,6 +99,7 @@ const Galery = () => {
           </div>
         </div>
       </section>
+      </div>
     </>
   );
 };

@@ -7,7 +7,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        
         <Switch>
           <Route exact path="/" component={Browser}></Route>
           <Route exact path="/galery/:searchTag" component={Galery}></Route>

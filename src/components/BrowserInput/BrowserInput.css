@@ -7,6 +7,7 @@
 }
 
 .HintsContainer {
+  overflow-y: scroll;
   position: absolute;
   width: 65vw;  
   opacity: 0.9;
@@ -15,12 +16,12 @@
   border-radius: 5px;
   padding: 5px;
   margin-top: 10px;
-  max-height: 50%;
+  max-height: 400px;
 }
 
 .Hint {
   cursor: pointer;
   padding-top: 5px;
-  border-top: .5px dotted black;
-  max-height: 20px;  
+  border-top: 1px solid black;
+  height: 20px;  
 }

@@ -40,6 +40,7 @@
 .GaleryGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
 }
 
 .IndividualTag {
@@ -62,7 +63,7 @@
 
 .ModalImagePreview {
   width: 90%;
-  height: 90%;
+  max-height: 650px;
   margin: auto;
   border-radius: 10px;
 }

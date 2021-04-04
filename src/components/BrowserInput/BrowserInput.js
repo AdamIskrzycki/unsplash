@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 const BrowserInput = (props) => {
   const [inputValue, setInputValue] = useState("");
   const [hints, setHints] = useState([]);
+  const [hintsVisibility, setHintsVisibility] = useState(true);
   
 
   const history = useHistory();
@@ -39,10 +40,19 @@ const BrowserInput = (props) => {
   };
 
   const goToGalery = (e, descripion) => {
+    setHintsVisibility(true);
     if (e === null) {
       history.push(`/galery/${inputValue}`);
     } else history.push(`/galery/${descripion}`);
   };
+  
+  const hideHints = () => {
+    setHintsVisibility(false);
+  }
+
+  const showHints = () => {
+    setHintsVisibility(true);
+  }
 
   return (
     <>
@@ -53,8 +63,10 @@ const BrowserInput = (props) => {
         value={inputValue}
         onChange={onInputChange}
         onKeyPress={handleKeyPress}
+        onFocus={showHints}
+        onBlur={hideHints}
       ></input>
-      {inputValue.length > 2 ? (
+      {inputValue.length > 2 && hintsVisibility ? (
         <div className="HintsContainer">
           {hints.map((hint) => {
             return (
