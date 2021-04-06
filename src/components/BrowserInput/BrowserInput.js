@@ -7,7 +7,6 @@ const BrowserInput = (props) => {
   const [inputValue, setInputValue] = useState("");
   const [hints, setHints] = useState([]);
   const [hintsVisibility, setHintsVisibility] = useState(true);
-  
 
   const history = useHistory();
 
@@ -45,14 +44,22 @@ const BrowserInput = (props) => {
       history.push(`/galery/${inputValue}`);
     } else history.push(`/galery/${descripion}`);
   };
-  
-  const hideHints = () => {
-    setHintsVisibility(false);
-  }
+
+  const hideHints = (e) => {
+    // setTimeout(() => setHintsVisibility(false), 80)    // bad solution, try other approaches
+    try {
+      if (e.relatedTarget.className === "Hint") {
+        setHintsVisibility(true);
+      }
+    }
+    catch {
+      setHintsVisibility(false);
+    }
+  };
 
   const showHints = () => {
     setHintsVisibility(true);
-  }
+  };
 
   return (
     <>
@@ -70,7 +77,12 @@ const BrowserInput = (props) => {
         <div className="HintsContainer">
           {hints.map((hint) => {
             return (
-              <p className="Hint" onClick={(e) => goToGalery(e, hint.alt_description)}>
+              <p
+                tabIndex='0'
+                className="Hint"
+                onBlur={hideHints}
+                onClick={(e) => goToGalery(e, hint.alt_description)}
+              >
                 {hint.alt_description}
               </p>
             );
