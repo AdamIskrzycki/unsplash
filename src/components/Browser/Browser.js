@@ -3,8 +3,6 @@ import BrowserInput from '../BrowserInput/BrowserInput';
 import "./Browser.css";
 
 const Browser = () => {
-  //TODO
-  //General styling
 
   return (
     <div className="BrowserContainer">

@@ -4,7 +4,6 @@ import "./Galery.css";
 import { useParams } from "react-router-dom";
 import { Dialog, DialogTitle, DialogContent } from "@material-ui/core";
 
-// check masonry grid for photos display
 
 const Galery = () => {
   const { searchTag } = useParams();
@@ -22,7 +21,6 @@ const Galery = () => {
           `https://api.unsplash.com/search?query=${searchTag}&client_id=RIvvLcDMXmoibV0w0qpbOnwDWWWNeh5YuomXUrbgsuQ`
         );
         const data = await response.json();
-        console.log("data: ", data);
         setPhotos(data.photos.results);
         setRelatedSearches(data.related_searches);
       } catch (err) {

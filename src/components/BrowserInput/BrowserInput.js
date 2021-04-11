@@ -46,7 +46,6 @@ const BrowserInput = (props) => {
   };
 
   const hideHints = (e) => {
-    // setTimeout(() => setHintsVisibility(false), 80)    // bad solution, try other approaches
     try {
       if (e.relatedTarget.className === "Hint") {
         setHintsVisibility(true);
