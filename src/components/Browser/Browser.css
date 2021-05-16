@@ -23,3 +23,10 @@
 p {
   font-size: 1.25em;
 }
+
+@media (max-width: 600px) {
+  .UnsplashContainer {
+    margin-top: 50px;
+    color: white;
+  }
+}

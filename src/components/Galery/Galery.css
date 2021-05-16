@@ -67,3 +67,21 @@
   margin: auto;
   border-radius: 10px;
 }
+
+@media (max-width: 600px) {
+
+  .RelatedSearchesContainer {
+    display: none;
+  }
+
+  .GaleryGrid {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: none;
+    margin: none;
+  }
+
+  .Image {
+    width: 100%;
+  }
+}

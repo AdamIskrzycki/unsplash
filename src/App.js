@@ -6,7 +6,7 @@ import Galery from "./components/Galery/Galery";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/" component={Browser}></Route>
           <Route exact path="/galery/:searchTag" component={Galery}></Route>

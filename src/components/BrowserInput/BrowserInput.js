@@ -40,9 +40,11 @@ const BrowserInput = (props) => {
 
   const goToGalery = (e, descripion) => {
     setHintsVisibility(true);
-    if (e === null) {
-      history.push(`/galery/${inputValue}`);
-    } else history.push(`/galery/${descripion}`);
+    if (inputValue !== "") {
+      if (e === null) {
+        history.push(`/galery/${inputValue}`);
+      } else history.push(`/galery/${descripion}`);
+    } else alert("You didn't search anything!")
   };
 
   const hideHints = (e) => {
@@ -50,8 +52,7 @@ const BrowserInput = (props) => {
       if (e.relatedTarget.className === "Hint") {
         setHintsVisibility(true);
       }
-    }
-    catch {
+    } catch {
       setHintsVisibility(false);
     }
   };
@@ -77,7 +78,7 @@ const BrowserInput = (props) => {
           {hints.map((hint) => {
             return (
               <p
-                tabIndex='0'
+                tabIndex="0"
                 className="Hint"
                 onBlur={hideHints}
                 onClick={(e) => goToGalery(e, hint.alt_description)}
