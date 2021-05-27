@@ -16,7 +16,7 @@
   border-radius: 5px;
   padding: 5px;
   margin-top: 10px;
-  max-height: 400px;
+  max-height: 30%;
 }
 
 .Hint {
@@ -24,7 +24,7 @@
   cursor: pointer;
   padding-top: 5px;
   border-top: 1px solid black;
-  height: 20px;  
+  height: fit-content;
 }
 
 @media (max-width: 600px) {
@@ -38,6 +38,5 @@
 
   .Hint {
     font-size: 16px;
-    height: fit-content;
   }
 }

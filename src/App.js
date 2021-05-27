@@ -4,6 +4,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Galery from "./components/Galery/Galery";
 
 function App() {
+
+
+
   return (
     <>
       <BrowserRouter basename={process.env.PUBLIC_URL}>

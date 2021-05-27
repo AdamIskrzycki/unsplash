@@ -30,10 +30,11 @@ const BrowserInput = (props) => {
 
   const onInputChange = (e) => {
     setInputValue(e.target.value);
+    console.log("hints: ", hints);
   };
 
   const handleKeyPress = (e) => {
-    if (e.code === "Enter") {
+    if (e.code === "Enter" || e.keyCode === 13) {
       goToGalery(null);
     }
   };
@@ -73,7 +74,7 @@ const BrowserInput = (props) => {
         onFocus={showHints}
         onBlur={hideHints}
       ></input>
-      {inputValue.length > 2 && hintsVisibility ? (
+      {inputValue.length > 2 && hintsVisibility && hints.length !== 0 ? (
         <div className="HintsContainer">
           {hints.map((hint) => {
             return (
