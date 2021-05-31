@@ -27,9 +27,13 @@
   height: fit-content;
 }
 
+.HiddenHint {
+  display: hidden;
+}
+
 @media (max-width: 600px) {
   .BrowserInput {
-    font-size: 16px;
+    font-size: 13px;
   }
 
   .HintsContainer {

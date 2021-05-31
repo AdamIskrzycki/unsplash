@@ -10,7 +10,7 @@
 }
 
 .UnsplashContainer {
-  color: #8E6155;
+  color:peru;
   margin-left: 15%;
   margin-bottom: 15%;
   width: 80%;
@@ -28,6 +28,7 @@ p {
   .UnsplashContainer {
     align-self: flex-start;
     margin-top: 30%;
-    color:peru;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

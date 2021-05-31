@@ -34,7 +34,7 @@ const BrowserInput = (props) => {
   };
 
   const handleKeyPress = (e) => {
-    if (e.code === "Enter" || e.keyCode === 13) {
+    if (e.code === "Enter") {
       goToGalery(null);
     }
   };
@@ -80,7 +80,7 @@ const BrowserInput = (props) => {
             return (
               <p
                 tabIndex="0"
-                className="Hint"
+                className={hint.alt_description === null ? "HiddenHint" : "Hint"}
                 onBlur={hideHints}
                 onClick={(e) => goToGalery(e, hint.alt_description)}
               >
