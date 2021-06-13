@@ -23,6 +23,7 @@ const Galery = () => {
         const data = await response.json();
         setPhotos(data.photos.results);
         setRelatedSearches(data.related_searches);
+        console.log('data: ', data)
       } catch (err) {
         console.log(err);
       }

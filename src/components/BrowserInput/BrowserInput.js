@@ -11,14 +11,16 @@ const BrowserInput = (props) => {
   const history = useHistory();
 
   useEffect(() => {
-    if (inputValue.length >= 2) {
+    if (inputValue.length > 2) {
       const fetchData = async () => {
         try {
           const response = await fetch(
             `https://api.unsplash.com/search?query=${inputValue}&client_id=RIvvLcDMXmoibV0w0qpbOnwDWWWNeh5YuomXUrbgsuQ`
           );
           const data = await response.json();
-          setHints(data.photos.results);
+          console.log('data', data)
+          setHints(data.related_searches);
+          console.log("hints: ", hints);
         } catch (err) {
           console.log(err);
         }
@@ -30,7 +32,6 @@ const BrowserInput = (props) => {
 
   const onInputChange = (e) => {
     setInputValue(e.target.value);
-    console.log("hints: ", hints);
   };
 
   const handleKeyPress = (e) => {
@@ -80,11 +81,11 @@ const BrowserInput = (props) => {
             return (
               <p
                 tabIndex="0"
-                className={hint.alt_description === null ? "HiddenHint" : "Hint"}
+                className={hint.title === null ? "HiddenHint" : "Hint"}
                 onBlur={hideHints}
-                onClick={(e) => goToGalery(e, hint.alt_description)}
+                onClick={(e) => goToGalery(e, hint.title)}
               >
-                {hint.alt_description}
+                {hint.title}
               </p>
             );
           })}
