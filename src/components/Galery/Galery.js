@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import BrowserInput from "../BrowserInput/BrowserInput";
 import "./Galery.css";
-import { useParams } from "react-router-dom";
+import "../BrowserInput/BrowserInput.css";
+import { useParams, useHistory } from "react-router-dom";
 import { Dialog, DialogTitle, DialogContent } from "@material-ui/core";
 
 
 const Galery = () => {
   const { searchTag } = useParams();
   const [photos, setPhotos] = useState([]);
-  const [relatedSearches, setRelatedSearches] = useState();
+  const [relatedSearches, setRelatedSearches] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [currentImageUrl, setCurrentImageUrl] = useState(null);
   const [currentImagePersonName, setCurrentImagePersonName] = useState(null);
   const [currentImagePlace, setCurrentImagePlace] = useState(null);
+
+
+  const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +27,6 @@ const Galery = () => {
         const data = await response.json();
         setPhotos(data.photos.results);
         setRelatedSearches(data.related_searches);
-        console.log('data: ', data)
       } catch (err) {
         console.log(err);
       }
@@ -43,10 +46,14 @@ const Galery = () => {
     setOpenModal(false);
   };
 
+  const searchSource = (descripion) => {
+       history.push(`/galery/${descripion}`);
+  };
+
   return (
     <>
       <nav className="NavBar">
-        <BrowserInput />
+        <BrowserInput/>
       </nav>
       <section className="GaleryContainer">
         {searchTag ? (
@@ -58,7 +65,7 @@ const Galery = () => {
           <div className="RelatedSearchesContainer">
             {relatedSearches
               ? relatedSearches.map((search) => {
-                  return <div className="RelatedSearch">{search.title}</div>;
+                  return <div className="RelatedSearch" onClick={() => searchSource(search.title)}>{search.title}</div>;
                 })
               : null}
           </div>
@@ -87,7 +94,7 @@ const Galery = () => {
                     />
                     <div className="IndividualTagsContainer">
                       {photo.tags.map((tag) => {
-                        return <p className="IndividualTag">{tag.title}</p>;
+                        return <p className="IndividualTag" onClick={() => searchSource(tag.title)}>{tag.title}</p>;
                       })}
                     </div>
                   </div>

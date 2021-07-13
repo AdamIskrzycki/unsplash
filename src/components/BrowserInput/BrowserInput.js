@@ -1,14 +1,15 @@
 import React from "react";
 import "./BrowserInput.css";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const BrowserInput = (props) => {
   const [inputValue, setInputValue] = useState("");
-  const [hints, setHints] = useState([]);
-  const [hintsVisibility, setHintsVisibility] = useState(true);
+  const [relatedSearches, setRelatedSearches] = useState([]);
+
 
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     if (inputValue.length > 2) {
@@ -18,9 +19,7 @@ const BrowserInput = (props) => {
             `https://api.unsplash.com/search?query=${inputValue}&client_id=RIvvLcDMXmoibV0w0qpbOnwDWWWNeh5YuomXUrbgsuQ`
           );
           const data = await response.json();
-          console.log('data', data)
-          setHints(data.related_searches);
-          console.log("hints: ", hints);
+          setRelatedSearches(data.related_searches);
         } catch (err) {
           console.log(err);
         }
@@ -32,6 +31,7 @@ const BrowserInput = (props) => {
 
   const onInputChange = (e) => {
     setInputValue(e.target.value);
+    console.log('location: ', location);
   };
 
   const handleKeyPress = (e) => {
@@ -41,26 +41,11 @@ const BrowserInput = (props) => {
   };
 
   const goToGalery = (e, descripion) => {
-    setHintsVisibility(true);
     if (inputValue !== "") {
       if (e === null) {
         history.push(`/galery/${inputValue}`);
       } else history.push(`/galery/${descripion}`);
     } else alert("You didn't search anything!")
-  };
-
-  const hideHints = (e) => {
-    try {
-      if (e.relatedTarget.className === "Hint") {
-        setHintsVisibility(true);
-      }
-    } catch {
-      setHintsVisibility(false);
-    }
-  };
-
-  const showHints = () => {
-    setHintsVisibility(true);
   };
 
   return (
@@ -72,25 +57,14 @@ const BrowserInput = (props) => {
         value={inputValue}
         onChange={onInputChange}
         onKeyPress={handleKeyPress}
-        onFocus={showHints}
-        onBlur={hideHints}
       ></input>
-      {inputValue.length > 2 && hintsVisibility && hints.length !== 0 ? (
-        <div className="HintsContainer">
-          {hints.map((hint) => {
-            return (
-              <p
-                tabIndex="0"
-                className={hint.title === null ? "HiddenHint" : "Hint"}
-                onBlur={hideHints}
-                onClick={(e) => goToGalery(e, hint.title)}
-              >
-                {hint.title}
-              </p>
-            );
-          })}
-        </div>
-      ) : null}
+      <section className="RelatedSearchesContainer">
+            {relatedSearches && inputValue.length > 2 && location.pathname === '/'
+              ? relatedSearches.map((search) => {
+                  return <div className="RelatedSearch" onClick={(e) => goToGalery(e, search.title)}>{search.title}</div>;
+                })
+              : null}
+      </section>
     </>
   );
 };
