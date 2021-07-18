@@ -54,4 +54,8 @@ div.RelatedSearchesContainer {
   .Hint {
     font-size: 16px;
   }
+
+  .RelatedSearchesContainer {
+    display: none;
+  }
 }

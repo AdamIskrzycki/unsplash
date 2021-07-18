@@ -19,6 +19,7 @@ const BrowserInput = (props) => {
             `https://api.unsplash.com/search?query=${inputValue}&client_id=RIvvLcDMXmoibV0w0qpbOnwDWWWNeh5YuomXUrbgsuQ`
           );
           const data = await response.json();
+          console.log('response', response);
           setRelatedSearches(data.related_searches);
         } catch (err) {
           console.log(err);
@@ -31,7 +32,6 @@ const BrowserInput = (props) => {
 
   const onInputChange = (e) => {
     setInputValue(e.target.value);
-    console.log('location: ', location);
   };
 
   const handleKeyPress = (e) => {
@@ -41,11 +41,11 @@ const BrowserInput = (props) => {
   };
 
   const goToGalery = (e, descripion) => {
-    if (inputValue !== "") {
+    if (inputValue !== "" && relatedSearches.length !== 0) {
       if (e === null) {
         history.push(`/galery/${inputValue}`);
       } else history.push(`/galery/${descripion}`);
-    } else alert("You didn't search anything!")
+    } else alert("There are no searches related to this phrase")
   };
 
   return (
