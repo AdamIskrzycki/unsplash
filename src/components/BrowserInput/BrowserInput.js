@@ -2,11 +2,13 @@ import React from "react";
 import "./BrowserInput.css";
 import { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import SearchIcon from '@material-ui/icons/Search';
+import { LocationOn } from "@material-ui/icons";
 
 const BrowserInput = (props) => {
   const [inputValue, setInputValue] = useState("");
   const [relatedSearches, setRelatedSearches] = useState([]);
-
+  const [noSearches, setNoSearches] = useState(false);
 
   const history = useHistory();
   const location = useLocation();
@@ -32,6 +34,7 @@ const BrowserInput = (props) => {
 
   const onInputChange = (e) => {
     setInputValue(e.target.value);
+    setNoSearches(false);
   };
 
   const handleKeyPress = (e) => {
@@ -45,11 +48,12 @@ const BrowserInput = (props) => {
       if (e === null) {
         history.push(`/galery/${inputValue}`);
       } else history.push(`/galery/${descripion}`);
-    } else alert("There are no searches related to this phrase")
+    } else setNoSearches(true);
   };
 
   return (
     <>
+      <section className="inputContainer">
       <input
         type="text"
         className="BrowserInput"
@@ -57,13 +61,22 @@ const BrowserInput = (props) => {
         value={inputValue}
         onChange={onInputChange}
         onKeyPress={handleKeyPress}
-      ></input>
+      >
+      
+      </input>
+        <div className="searchIcon" style={{color: location.pathname === "/" ? "white" : "black"}}onClick={(e) => goToGalery(e, inputValue)}>
+          <SearchIcon fontSize='large'/>
+        </div>
+      </section>
       <section className="RelatedSearchesContainer">
             {relatedSearches && inputValue.length > 2 && location.pathname === '/'
               ? relatedSearches.map((search) => {
                   return <div className="RelatedSearch" onClick={(e) => goToGalery(e, search.title)}>{search.title}</div>;
                 })
-              : null}
+              : null} 
+             <div className="noSearches" style={{display: noSearches ? "block" : "none"} }>
+               There are no results for the given phrase
+             </div> 
       </section>
     </>
   );

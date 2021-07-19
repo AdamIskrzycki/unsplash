@@ -38,24 +38,31 @@ div.RelatedSearchesContainer {
   cursor: pointer;
 }
 
-.HiddenHint {
-  display: hidden;
+.noSearches {
+  font-weight: bold;
+}
+
+.searchIcon {
+  display: none;
 }
 
 @media (max-width: 600px) {
+
+  .inputContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
   .BrowserInput {
     font-size: 13px;
   }
 
-  .HintsContainer {
-    max-height: 30vh;
-  }
-
-  .Hint {
-    font-size: 16px;
-  }
-
   .RelatedSearchesContainer {
     display: none;
+  }
+
+  .searchIcon {
+    display: block;
   }
 }
