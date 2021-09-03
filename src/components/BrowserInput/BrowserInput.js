@@ -3,9 +3,8 @@ import "./BrowserInput.css";
 import { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import SearchIcon from '@material-ui/icons/Search';
-import { LocationOn } from "@material-ui/icons";
 
-const BrowserInput = (props) => {
+const BrowserInput = () => {
   const [inputValue, setInputValue] = useState("");
   const [relatedSearches, setRelatedSearches] = useState([]);
   const [noSearches, setNoSearches] = useState(false);
@@ -44,7 +43,7 @@ const BrowserInput = (props) => {
   };
 
   const goToGalery = (e, descripion) => {
-    if (inputValue !== "" && relatedSearches.length !== 0) {
+    if (inputValue.length > 0 && relatedSearches.length !== 0) {
       if (e === null) {
         history.push(`/galery/${inputValue}`);
       } else history.push(`/galery/${descripion}`);
@@ -64,7 +63,7 @@ const BrowserInput = (props) => {
       >
       
       </input>
-        <div className="searchIcon" style={{color: location.pathname === "/" ? "white" : "black"}}onClick={(e) => goToGalery(e, inputValue)}>
+        <div className="searchIcon" style={{color: location.pathname === "/" ? "white" : "black"}} onClick={(e) => goToGalery(e, inputValue)}>
           <SearchIcon fontSize='large'/>
         </div>
       </section>
