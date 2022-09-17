@@ -5,7 +5,6 @@ import "../BrowserInput/BrowserInput.css";
 import { useParams, useHistory } from "react-router-dom";
 import { Dialog, DialogTitle, DialogContent } from "@material-ui/core";
 
-
 const Galery = () => {
   const { searchTag } = useParams();
   const [photos, setPhotos] = useState([]);
