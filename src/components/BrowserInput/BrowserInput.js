@@ -17,11 +17,13 @@ const BrowserInput = () => {
       const fetchData = async () => {
         try {
           const response = await fetch(
-            `https://api.unsplash.com/search?query=${inputValue}&client_id=RIvvLcDMXmoibV0w0qpbOnwDWWWNeh5YuomXUrbgsuQ`
+            `https://api.unsplash.com/search/photos?query=${inputValue}&client_id=RIvvLcDMXmoibV0w0qpbOnwDWWWNeh5YuomXUrbgsuQ`
+            // try /search/photos - but that might require rebuilding the whole app or something idk
           );
           const data = await response.json();
-          console.log('response', response);
-          setRelatedSearches(data.related_searches);
+          console.log('response', data);
+          // setRelatedSearches(data.related_searches);
+          setRelatedSearches([])
         } catch (err) {
           console.log(err);
         }
@@ -43,7 +45,7 @@ const BrowserInput = () => {
   };
 
   const goToGalery = (e, descripion) => {
-    if (inputValue.length > 0 && relatedSearches.length !== 0) {
+    if (inputValue.length > 0) { // && relatedSearches.length !== 0
       if (e === null) {
         history.push(`/galery/${inputValue}`);
       } else history.push(`/galery/${descripion}`);

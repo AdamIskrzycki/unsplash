@@ -21,11 +21,14 @@ const Galery = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api.unsplash.com/search?query=${searchTag}&client_id=RIvvLcDMXmoibV0w0qpbOnwDWWWNeh5YuomXUrbgsuQ`
+          `https://api.unsplash.com/search/photos?query=${searchTag}&client_id=RIvvLcDMXmoibV0w0qpbOnwDWWWNeh5YuomXUrbgsuQ`
         );
         const data = await response.json();
-        setPhotos(data.photos.results);
-        setRelatedSearches(data.related_searches);
+        // setPhotos(data.photos.results);
+        setPhotos(data.results)
+        console.log('photos', photos)
+        // setRelatedSearches(data.related_searches);
+        // setRelatedSearches([])
       } catch (err) {
         console.log(err);
       }
