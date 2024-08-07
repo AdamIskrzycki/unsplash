@@ -24,9 +24,11 @@ const Galery = () => {
           `https://api.unsplash.com/search/photos?query=${searchTag}&client_id=RIvvLcDMXmoibV0w0qpbOnwDWWWNeh5YuomXUrbgsuQ`
         );
         const data = await response.json();
-        // setPhotos(data.photos.results);
         setPhotos(data.results)
-        console.log('photos', photos)
+        // console.log('photos', photos)
+
+        // find a way to show some realated searches - go through the api response and look for appropriate fields to display
+
         // setRelatedSearches(data.related_searches);
         // setRelatedSearches([])
       } catch (err) {

@@ -18,12 +18,11 @@ const BrowserInput = () => {
         try {
           const response = await fetch(
             `https://api.unsplash.com/search/photos?query=${inputValue}&client_id=RIvvLcDMXmoibV0w0qpbOnwDWWWNeh5YuomXUrbgsuQ`
-            // try /search/photos - but that might require rebuilding the whole app or something idk
           );
           const data = await response.json();
           console.log('response', data);
           // setRelatedSearches(data.related_searches);
-          setRelatedSearches([])
+          // setRelatedSearches([])
         } catch (err) {
           console.log(err);
         }
