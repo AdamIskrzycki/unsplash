@@ -8,8 +8,9 @@ The app is used for browsing high-quality images. Simply search for a phrase and
 # Demo
 Open [Unsplash](https://adamiskrzycki.github.io/unsplash/) to view full project.
 
-# Libraries
-Used libraries: 
+# Libraries and technologies
+Used libraries and technologies: 
+* [TypeScript](https://www.typescriptlang.org/)
 * [MaterialUI](https://material-ui.com/)
 * [React Router](https://reactrouter.com/)
 

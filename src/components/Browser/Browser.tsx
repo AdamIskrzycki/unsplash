@@ -2,7 +2,7 @@ import React from "react";
 import BrowserInput from '../BrowserInput/BrowserInput';
 import "./Browser.css";
 
-const Browser = () => {
+const Browser: React.FC = () => {
 
   return (
     <div className="BrowserContainer">

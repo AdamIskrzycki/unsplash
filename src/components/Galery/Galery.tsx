@@ -2,20 +2,38 @@ import React, { useEffect, useState } from "react";
 import BrowserInput from "../BrowserInput/BrowserInput";
 import "./Galery.css";
 import "../BrowserInput/BrowserInput.css";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Dialog, DialogTitle, DialogContent } from "@material-ui/core";
 
-const Galery = () => {
-  const { searchTag } = useParams();
-  const [photos, setPhotos] = useState([]);
+
+interface PhotosTypes {
+  id: string,
+  urls: {
+    small: string,
+    regular: string,
+  },
+  user: {
+    name: string,
+    location: string
+  },
+  tags: [{
+    title: string,
+  }]
+}
+
+
+
+const Galery: React.FC = () => {
+  const { searchTag } = useParams<{searchTag: string}>();
+  const [photos, setPhotos] = useState<PhotosTypes[]>([]);
   const [relatedSearches, setRelatedSearches] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const [currentImageUrl, setCurrentImageUrl] = useState(null);
-  const [currentImagePersonName, setCurrentImagePersonName] = useState(null);
-  const [currentImagePlace, setCurrentImagePlace] = useState(null);
+  const [currentImageUrl, setCurrentImageUrl] = useState<null | string>(null);
+  const [currentImagePersonName, setCurrentImagePersonName] = useState<null | string>(null);
+  const [currentImagePlace, setCurrentImagePlace] = useState<null | string>(null);
 
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +57,7 @@ const Galery = () => {
     fetchData();
   }, [searchTag]);
 
-  const getImageInformation = (imageUrl, imagePersonName, imagePlace) => {
+  const getImageInformation = (imageUrl: string, imagePersonName: string, imagePlace: string) => {
     setOpenModal(true);
     setCurrentImageUrl(imageUrl);
     setCurrentImagePersonName(imagePersonName);
@@ -50,8 +68,8 @@ const Galery = () => {
     setOpenModal(false);
   };
 
-  const searchSource = (descripion) => {
-       history.push(`/galery/${descripion}`);
+  const searchSource = (descripion: string) => {
+       navigate(`/galery/${descripion}`);
   };
 
   return (
@@ -66,18 +84,18 @@ const Galery = () => {
           <p>no searchtag provided</p>
         )}
         <div>
-          <div className="RelatedSearchesContainer">
+          {/* <div className="RelatedSearchesContainer">
             {relatedSearches
               ? relatedSearches.map((search) => {
                   return <div className="RelatedSearch" onClick={() => searchSource(search.title)}>{search.title}</div>;
                 })
               : null}
-          </div>
+          </div> */}
           <div className="GaleryGrid">
             <Dialog open={openModal} onClose={handleModalClose}>
               <DialogTitle>Taken by: {currentImagePersonName}</DialogTitle>
               <DialogContent>
-                <img className="ModalImagePreview" src={currentImageUrl}></img>
+                <img className="ModalImagePreview" src={currentImageUrl!}></img>
               </DialogContent>
               <DialogTitle>{currentImagePlace}</DialogTitle>
             </Dialog>
