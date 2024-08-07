@@ -1,15 +1,15 @@
 import React from "react";
 import "./BrowserInput.css";
 import { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import SearchIcon from '@material-ui/icons/Search';
 
-const BrowserInput = () => {
+const BrowserInput: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
-  const [relatedSearches, setRelatedSearches] = useState([]);
+  //const [relatedSearches, setRelatedSearches] = useState([]);
   const [noSearches, setNoSearches] = useState(false);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -32,23 +32,23 @@ const BrowserInput = () => {
     }
   }, [inputValue]);
 
-  const onInputChange = (e) => {
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     setNoSearches(false);
   };
 
-  const handleKeyPress = (e) => {
-    if (e.code === "Enter") {
-      goToGalery(null);
-    }
-  };
-
-  const goToGalery = (e, descripion) => {
+  const goToGalery = (e: null | React.MouseEvent<HTMLDivElement>, descripion?: string) => {
     if (inputValue.length > 0) { // && relatedSearches.length !== 0
       if (e === null) {
-        history.push(`/galery/${inputValue}`);
-      } else history.push(`/galery/${descripion}`);
+        navigate(`/galery/${inputValue}`);
+      } else navigate(`/galery/${descripion}`);
     } else setNoSearches(true);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      goToGalery(null);
+    }
   };
 
   return (
@@ -60,7 +60,7 @@ const BrowserInput = () => {
         placeholder="Search free high-resolution photos"
         value={inputValue}
         onChange={onInputChange}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
       >
       
       </input>
@@ -69,11 +69,11 @@ const BrowserInput = () => {
         </div>
       </section>
       <section className="RelatedSearchesContainer">
-            {relatedSearches && inputValue.length > 2 && location.pathname === '/'
+            {/* {relatedSearches && inputValue.length > 2 && location.pathname === '/'
               ? relatedSearches.map((search) => {
                   return <div className="RelatedSearch" onClick={(e) => goToGalery(e, search.title)}>{search.title}</div>;
                 })
-              : null} 
+              : null}  */}
              <div className="noSearches" style={{display: noSearches ? "block" : "none"} }>
                There are no results for the given phrase
              </div> 
